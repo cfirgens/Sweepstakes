@@ -8,5 +8,24 @@ namespace Sweepstakes
 {
     class Sweepstakes
     {
+        //member variables
+
+        //constructor
+        Sweepstakes(string name)
+        {
+
+        }
+        //methods
+        public void RegisterContestant(Contestant contestant)
+        {
+
+        }
+
+        public void PrintContestantInfo(Contestant contestant)
+        {
+
+        }
+
+
     }
 }
