@@ -1,6 +1,6 @@
 ﻿namespace Sweepstakes
 {
-    internal interface ISweepstakesManager
+    interface ISweepstakesManager
     {
         Sweepstakes GetSweepstakes();
 

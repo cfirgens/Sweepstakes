@@ -2,7 +2,7 @@
 
 namespace Sweepstakes
 {
-    internal class Contestant
+    public class Contestant
     {
         //member variables
         private string firstName;
