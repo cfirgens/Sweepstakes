@@ -21,7 +21,6 @@ namespace Sweepstakes
         //constructor
         public Contestant()
         {
-
         }
 
         //methods
