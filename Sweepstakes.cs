@@ -12,7 +12,7 @@ namespace Sweepstakes
     public class Sweepstakes
     {
         //member variables
-        private List<Contestant> contestants = new List<Contestant>();
+        Dictionary<int, Contestant> contestants = new Dictionary<int, Contestant>();
         string name;
 
         //constructor
@@ -24,7 +24,7 @@ namespace Sweepstakes
         //methods
         public void RegisterContestant(Contestant contestant)
         {
-            contestants.Add(contestant);
+            contestants.Add(contestant.RegistrationNumber, contestant);
         }
 
         public void PrintContestantInfo(Contestant contestant)
@@ -39,7 +39,7 @@ namespace Sweepstakes
             Contestant winner;
             Random random = new Random();
             index = random.Next(0, contestants.Count - 1);
-            winner = contestants[index];
+            winner = contestants.ElementAt(index).Value;
             EmailWinner(winner.FirstName, winner.LastName, winner.Email);
             return winner.FirstName + " " + winner.LastName;
         }
