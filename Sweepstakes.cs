@@ -65,6 +65,8 @@ namespace Sweepstakes
                 //accepting all SSL certs
                 client.ServerCertificateValidationCallback = (s, c, h, e) => true;
 
+                client.Connect("smtp.friends.com", 587, false);
+
                 client.Send(message);
                 client.Disconnect(true);
             }
