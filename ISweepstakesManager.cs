@@ -4,8 +4,8 @@
     {
         Sweepstakes GetSweepstakes();
 
-        public void InsertSweepstakes(Sweepstakes sweepstakes)
-        {
-        }
+        void InsertSweepstakes(Sweepstakes sweepstakes);
+        
+       
     }
 }

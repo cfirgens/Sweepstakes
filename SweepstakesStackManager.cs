@@ -1,6 +1,24 @@
-﻿namespace Sweepstakes
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Sweepstakes
 {
-    internal class SweepstakesStackManager
+    internal class SweepstakesStackManager : ISweepstakesManager
     {
+        Stack<Sweepstakes> stackSweepStacks = new Stack<Sweepstakes>();
+
+        public Sweepstakes GetSweepstakes()
+        {
+            return stackSweepStacks.Pop();
+           
+        }
+        
+        public void InsertSweepstakes(Sweepstakes sweepstakes)
+        {            
+            stackSweepStacks.Push(sweepstakes);
+        }
     }
 }
