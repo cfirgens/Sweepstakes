@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Sweepstakes
+﻿namespace Sweepstakes
 {
-    interface ISweepstakesManager
+    internal interface ISweepstakesManager
     {
         Sweepstakes GetSweepstakes();
 
         public void InsertSweepstakes(Sweepstakes sweepstakes)
         {
-
         }
     }
 }

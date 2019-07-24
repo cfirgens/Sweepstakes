@@ -1,21 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sweepstakes
 {
-    class Contestant
+    internal class Contestant
     {
         //member variables
-        string firstName;
-        string lastName;
-        string email;
-        int registrationNumber;
+        private string firstName;
+
+        private string lastName;
+        private string email;
+        private int registrationNumber;
 
         //properties
         public string FirstName { get; set; }
+
         public string LastName { get; set; }
         public string Email { get; set; }
         public int RegistrationNumber { get; set; }
@@ -45,9 +43,7 @@ namespace Sweepstakes
         private int GetRegistrationNumber()
         {
             Random random = new Random();
-            return random.Next(1, 1000);
-
+            return random.Next(1, 10000);
         }
     }
 }
-
