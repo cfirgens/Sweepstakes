@@ -11,6 +11,7 @@ namespace Sweepstakes
         //member variables
         ISweepstakesManager manager;
         List<Contestant> contestants = new List<Contestant>();
+        Sweepstakes sweepstakes;
 
         //constructor
 
@@ -24,7 +25,7 @@ namespace Sweepstakes
             Console.WriteLine("What would you like to name the sweepstakes?");
             sweepstakesName = Console.ReadLine();
 
-            Sweepstakes sweepstakes = new Sweepstakes(sweepstakesName);
+            this.sweepstakes = new Sweepstakes(sweepstakesName);
             manager.InsertSweepstakes(sweepstakes);
         }
 
@@ -37,10 +38,11 @@ namespace Sweepstakes
 
         public void AddContestantsToSweepstakes()
         {
-            for (int index = 0; index< contestants.Count; index++)
+            for (int index = 0; index < contestants.Count; index++)
             {
-                Sweepstakes.RegisterContestants(contestants[index]);
+                sweepstakes.RegisterContestant(contestants[index]);
             }
         }
+
     }
 }

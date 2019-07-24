@@ -14,6 +14,7 @@ namespace Sweepstakes
         //member variables
         Dictionary<int, Contestant> contestants = new Dictionary<int, Contestant>();
         string name;
+        Contestant winner;
 
         //constructor
         public Sweepstakes(string name)
@@ -35,8 +36,7 @@ namespace Sweepstakes
         
         public string PickWinner()
         {
-            int index;
-            Contestant winner;
+            int index;            
             Random random = new Random();
             index = random.Next(0, contestants.Count - 1);
             winner = contestants.ElementAt(index).Value;
