@@ -19,12 +19,9 @@ namespace Sweepstakes
         public int RegistrationNumber { get; set; }
 
         //constructor
-        public Contestant(string firstName, string lastName, string email, int registrationNumber)
+        public Contestant()
         {
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.email = email;
-            this.registrationNumber = registrationNumber;
+
         }
 
         //methods

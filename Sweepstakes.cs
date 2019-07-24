@@ -40,15 +40,15 @@ namespace Sweepstakes
             Random random = new Random();
             index = random.Next(0, contestants.Count - 1);
             winner = contestants.ElementAt(index).Value;
-            EmailWinner(winner.FirstName, winner.LastName, winner.Email);
+            EmailWinner(winner);
             return winner.FirstName + " " + winner.LastName;
         }
 
-        private void EmailWinner(string firstName, string lastName, string email)
+        private void EmailWinner(Contestant contestant)
         {
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress("Sweepstakes Manager", "Sweepstakes@sweep.com"));
-            message.To.Add(new MailboxAddress(firstName + lastName, email));
+            message.To.Add(new MailboxAddress(contestant.FirstName + contestant.LastName, contestant.Email));
             message.Subject = "Congratulations! You won the sweepstakes";
 
             message.Body = new TextPart("plain")
