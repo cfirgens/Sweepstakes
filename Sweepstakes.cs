@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MailKit.Net.Smtp;
 using MailKit;
 using MimeKit;
+using MailKit.Security;
 
 namespace Sweepstakes
 {
@@ -48,7 +49,7 @@ namespace Sweepstakes
             TransferContestantToWinner(winner, winnerContestant, winnerKey);
             winner.Notify();
             NotifyContestants();
-            //EmailWinner(winner);
+            EmailWinner(winner);
             return winner.FirstName + " " + winner.LastName;
         }
 
@@ -68,12 +69,12 @@ namespace Sweepstakes
                     --Sweepstakes team"
             };
 
-            using (var client = new SmtpClient())
+            using (var client = new SmtpClient(new ProtocolLogger ("smtp.log")))
             {
-                //accepting all SSL certs
-                client.ServerCertificateValidationCallback = (s, c, h, e) => true;
 
-                client.Connect("smtp.friends.com", 587, false);
+                client.Connect("smtp.gmail.com", 465 , SecureSocketOptions.SslOnConnect);
+                
+                client.Authenticate("cfirgenstest@gmail.com", "devcodecamp2019");
 
                 client.Send(message);
                 client.Disconnect(true);
