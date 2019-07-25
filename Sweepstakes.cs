@@ -30,8 +30,7 @@ namespace Sweepstakes
 
         public void PrintContestantInfo(Contestant contestant)
         {
-            Console.WriteLine("Contestant name: " + contestant.FirstName + " " + contestant.LastName + " \nContestant email: " + contestant.Email + " \nContestant Registration Number: " + contestant.RegistrationNumber);
-            
+            Console.WriteLine("Contestant name: " + contestant.FirstName + " " + contestant.LastName + " \nContestant email: " + contestant.Email + " \nContestant Registration Number: " + contestant.RegistrationNumber);            
         }
         
         public string PickWinner()
@@ -44,8 +43,6 @@ namespace Sweepstakes
             index = random.Next(0, contestants.Count - 1);
             winnerContestant = contestants.ElementAt(index).Value;
             winnerKey = contestants.ElementAt(index).Key;
-
-
             TransferContestantToWinner(winner, winnerContestant, winnerKey);
             winner.Notify();
             NotifyContestants();
@@ -57,7 +54,6 @@ namespace Sweepstakes
         {  
             using (var client = new SmtpClient(new ProtocolLogger ("smtp.log")))
             {
-
                 client.Connect("smtp.gmail.com", 465 , SecureSocketOptions.SslOnConnect);
                 
                 client.Authenticate("cfirgenstest@gmail.com", "devcodecamp2019");
