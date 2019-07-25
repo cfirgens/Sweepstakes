@@ -49,26 +49,12 @@ namespace Sweepstakes
             TransferContestantToWinner(winner, winnerContestant, winnerKey);
             winner.Notify();
             NotifyContestants();
-            EmailWinner(winner);
+            SendEmail(WinnersMessage(winner));
             return winner.FirstName + " " + winner.LastName;
         }
 
-        private void EmailWinner(Winner winner)
-        {
-            var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("Sweepstakes Manager", "Sweepstakes@sweep.com"));
-            message.To.Add(new MailboxAddress(winner.FirstName + winner.LastName, winner.Email));
-            message.Subject = "Congratulations! You won the sweepstakes";
-
-            message.Body = new TextPart("plain")
-            {
-                Text = @"Dear contestant,
-                    You have won the sweepstakes, congratulations! Please contact the sweepstakes manager to claim your prize.
-                    Sweepstakes manager can be reached at (414) 999-6666. Please have your name, email and registration number when you call
-
-                    --Sweepstakes team"
-            };
-
+        private void SendEmail(MimeMessage message)
+        {  
             using (var client = new SmtpClient(new ProtocolLogger ("smtp.log")))
             {
 
@@ -95,7 +81,45 @@ namespace Sweepstakes
             {
                 var contestant = contestants.ElementAt(index);
                 contestant.Value.Notify();
+                SendEmail(LosingMessage(contestant.Value));
             }
+        }
+
+        private MimeMessage WinnersMessage(Winner winner)
+        {
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress("Sweepstakes Manager", "Sweepstakes@sweep.com"));
+            message.To.Add(new MailboxAddress(winner.FirstName + winner.LastName, winner.Email));
+            message.Subject = "Congratulations! You won the sweepstakes";
+
+            message.Body = new TextPart("plain")
+            {
+                Text = @"Dear contestant,
+                    You have won the sweepstakes, congratulations! Please contact the sweepstakes manager to claim your prize.
+                    Sweepstakes manager can be reached at (414) 999-6666. Please have your name, email and registration number when you call
+
+                    --Sweepstakes team"
+            };
+
+            return message;
+        }
+
+        private MimeMessage LosingMessage(Contestant contestant)
+        {
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress("Sweepstakes Manager", "Sweepstakes@sweep.com"));
+            message.To.Add(new MailboxAddress(contestant.FirstName + contestant.LastName, contestant.Email));
+            message.Subject = "Better luck next time!";
+
+            message.Body = new TextPart("plain")
+            {
+                Text = @"Dear contestant,
+                    You have lost the sweepstakes, better luck next time and please play again!
+
+                    --Sweepstakes team"
+            };
+
+            return message;
         }
 
     }
