@@ -6,7 +6,6 @@ namespace Sweepstakes
     {
         //member variables
         private string firstName;
-
         private string lastName;
         private string email;
         private int registrationNumber;
@@ -28,12 +27,12 @@ namespace Sweepstakes
         public void GetNewContestant()
         {
             Console.WriteLine("What is the contestants first name?");
-            FirstName = Console.ReadLine();
+            firstName = Console.ReadLine();
             Console.WriteLine("What is the contestants last name?");
-            LastName = Console.ReadLine();
+            lastName = Console.ReadLine();
             Console.WriteLine("What is the contestants email address?");
-            Email = Console.ReadLine();
-            RegistrationNumber = GetRegistrationNumber();
+            email = Console.ReadLine();
+            registrationNumber = GetRegistrationNumber();
         }
 
         private int GetRegistrationNumber()

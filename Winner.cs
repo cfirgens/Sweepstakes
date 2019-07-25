@@ -8,16 +8,8 @@ namespace Sweepstakes
 {
     public class Winner : IContestants
     {
-        //member variables
-        private string firstName;
-
-        private string lastName;
-        private string email;
-        private int registrationNumber;
-
         //properties
         public string FirstName { get; set; }
-
         public string LastName { get; set; }
         public string Email { get; set; }
         public int RegistrationNumber { get; set; }
