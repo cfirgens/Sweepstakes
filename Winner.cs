@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Sweepstakes
 {
-    public class Contestant : IContestants
+    public class Winner : IContestants
     {
         //member variables
         private string firstName;
@@ -19,31 +23,21 @@ namespace Sweepstakes
         public int RegistrationNumber { get; set; }
 
         //constructor
-        public Contestant()
+        public Winner()
         {
         }
 
         //methods
-
-        public void GetNewContestant()
-        {
-            Console.WriteLine("What is the contestants first name?");
-            FirstName = Console.ReadLine();
-            Console.WriteLine("What is the contestants last name?");
-            LastName = Console.ReadLine();
-            Console.WriteLine("What is the contestants email address?");
-            Email = Console.ReadLine();
-            RegistrationNumber = GetRegistrationNumber();
-        }
 
         private int GetRegistrationNumber()
         {
             Random random = new Random();
             return random.Next(1, 10000);
         }
+
         public void Notify()
         {
-            Console.WriteLine(FirstName + ", sorry you did not win the sweepstakes, better luck next time!");
+            Console.WriteLine(FirstName+ ", congratulations you are the winner");
         }
     }
 }

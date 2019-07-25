@@ -1,4 +1,5 @@
-﻿namespace Sweepstakes
+﻿using System;
+namespace Sweepstakes
 {
     internal class Program
     {
@@ -15,12 +16,13 @@
 
             marketingFirm.CreateContestant();
             marketingFirm.CreateContestant();
+            marketingFirm.CreateContestant();
             marketingFirm.AddContestantsToSweepstakes();
                         
             string winnerName;
             winnerName = marketingFirm.sweepstakes.PickWinner();
-            System.Console.WriteLine(winnerName);
-            
+            Console.WriteLine(winnerName);
+            Console.ReadLine();
 
 
         }

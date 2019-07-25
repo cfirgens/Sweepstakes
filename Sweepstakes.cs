@@ -14,7 +14,6 @@ namespace Sweepstakes
         //member variables
         Dictionary<int, Contestant> contestants = new Dictionary<int, Contestant>();
         string name;
-        Contestant winner;
 
         //constructor
         public Sweepstakes(string name)
@@ -36,19 +35,28 @@ namespace Sweepstakes
         
         public string PickWinner()
         {
-            int index;            
+            int index;
+            Winner winner = new Winner();
+            int winnerKey;
+            Contestant winnerContestant;
             Random random = new Random();
             index = random.Next(0, contestants.Count - 1);
-            winner = contestants.ElementAt(index).Value;
-            EmailWinner(winner);
+            winnerContestant = contestants.ElementAt(index).Value;
+            winnerKey = contestants.ElementAt(index).Key;
+
+
+            TransferContestantToWinner(winner, winnerContestant, winnerKey);
+            winner.Notify();
+            NotifyContestants();
+            //EmailWinner(winner);
             return winner.FirstName + " " + winner.LastName;
         }
 
-        private void EmailWinner(Contestant contestant)
+        private void EmailWinner(Winner winner)
         {
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress("Sweepstakes Manager", "Sweepstakes@sweep.com"));
-            message.To.Add(new MailboxAddress(contestant.FirstName + contestant.LastName, contestant.Email));
+            message.To.Add(new MailboxAddress(winner.FirstName + winner.LastName, winner.Email));
             message.Subject = "Congratulations! You won the sweepstakes";
 
             message.Body = new TextPart("plain")
@@ -72,6 +80,22 @@ namespace Sweepstakes
             }
         }
 
+        private void TransferContestantToWinner(Winner winner, Contestant winnerContestant, int winnerKey)
+        {
+            winner.FirstName = winnerContestant.FirstName;
+            winner.LastName = winnerContestant.LastName;
+            winner.Email = winnerContestant.Email;
+            winner.RegistrationNumber = winnerContestant.RegistrationNumber;
+            contestants.Remove(winnerKey);
+        }
+        private void NotifyContestants()
+        {
+            for(int index = 0; index < contestants.Count; index ++)
+            {
+                var contestant = contestants.ElementAt(index);
+                contestant.Value.Notify();
+            }
+        }
 
     }
 }
