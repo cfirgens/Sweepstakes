@@ -28,10 +28,25 @@ namespace Sweepstakes
         {
             Console.WriteLine("What is the contestants first name?");
             firstName = Console.ReadLine();
+            if (string.IsNullOrEmpty(firstName))
+            {
+                Console.WriteLine("First name can't be empty! Input the first name again");
+                firstName = Console.ReadLine();
+            }
             Console.WriteLine("What is the contestants last name?");
             lastName = Console.ReadLine();
+            if (string.IsNullOrEmpty(lastName))
+            {
+                Console.WriteLine("Last name can't be empty! Input the last name again");
+                firstName = Console.ReadLine();
+            }
             Console.WriteLine("What is the contestants email address?");
             email = Console.ReadLine();
+            if (string.IsNullOrEmpty(email))
+            {
+                Console.WriteLine("Email address can't be empty! Input the email address again");
+                firstName = Console.ReadLine();
+            }
             registrationNumber = GetRegistrationNumber();
         }
 

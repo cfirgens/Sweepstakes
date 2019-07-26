@@ -19,7 +19,8 @@ namespace Sweepstakes
                 case "queue":
                     return new SweepstakesQueueManager();
                 default:
-                    throw new ApplicationException(string.Format("Not a valid style to use"));
+                    Console.WriteLine("That was not a valid choice");
+                    return GetSweepstakesManager();
             }
         }
     }
